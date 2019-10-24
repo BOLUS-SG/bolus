@@ -18,7 +18,7 @@ public class ServiceableAreas {
 	
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private String name;
 	private String maxLatitude;
 	private String minLatitude;
@@ -32,7 +32,7 @@ public class ServiceableAreas {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ServiceableAreas(int id, String name, String maxLatitude, String minLatitude, String maxLongitude,
+	public ServiceableAreas(Integer id, String name, String maxLatitude, String minLatitude, String maxLongitude,
 			String minLongitude, List<GeoFencingPoints> geoFencingPoints) {
 		super();
 		this.id = id;
@@ -45,11 +45,11 @@ public class ServiceableAreas {
 	}
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

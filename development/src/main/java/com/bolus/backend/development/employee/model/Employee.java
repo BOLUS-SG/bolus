@@ -13,35 +13,57 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.bolus.backend.development.validation.model.EmployeeValidationBean;
+
+
 
 @Entity
 @Table(name = "employee_details")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Employee {
+public class Employee extends EmployeeValidationBean{
 	
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	private int id;
+	private Integer id;
+	@Size(max = 20, min = 3, message = "{employee.fname.invalid.size}")
+    @NotEmpty(message = "{employee.fname.invalid.empty}")
 	private String firstName;
+	@Size(max = 20, min = 3, message = "{employee.lname.invalid.size}")
+    @NotEmpty(message = "{employee.fname.lnvalid.empty}")
 	private String lastName;
+	@NotNull(message = "{employee.dob.invalid.empty}")
 	private Date dob;
-	private long phone;
+	@NotNull(message = "{employee.phone.invalid}")
+	private Long phone;
+	@Email(message = "{employee.email.invalid.format}")
+    @NotEmpty(message = "{employee.email.invalid.empty}")
 	private String email;
-	private long altPhone;
+	@NotNull(message = "{employee.altPhone.invalid}")
+	private Long altPhone;
+	@NotEmpty(message = "{employee.type.invalid}")
 	private String type;
+	@NotEmpty(message = "{employee.aadhar.invalid}")
 	private String aadharCard;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name= "id")
 	private List<Address> address = new ArrayList<Address>();
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="assigned_area_id")
+	private AssignedArea assignedArea;
 	public Employee() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Employee(int id, String firstName, String lastName, Date dob, long phone, String email, long altPhone,
-			String type, String aadharCard, List<Address> address) {
+	public Employee(Integer id, String firstName, String lastName, Date dob, Long phone, String email, Long altPhone,
+			String type, String aadharCard, List<Address> address, AssignedArea assignedArea) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -53,13 +75,15 @@ public class Employee {
 		this.type = type;
 		this.aadharCard = aadharCard;
 		this.address = address;
+		this.assignedArea = assignedArea;
 	}
 
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -81,16 +105,16 @@ public class Employee {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	public long getPhone() {
+	public Long getPhone() {
 		return phone;
 	}
-	public void setPhone(long phone) {
+	public void setPhone(Long phone) {
 		this.phone = phone;
 	}
-	public long getAltPhone() {
+	public Long getAltPhone() {
 		return altPhone;
 	}
-	public void setAltPhone(long altPhone) {
+	public void setAltPhone(Long altPhone) {
 		this.altPhone = altPhone;
 	}
 	
@@ -117,6 +141,12 @@ public class Employee {
 	}
 	public void setAddress(List<Address> address) {
 		this.address = address;
+	}
+	public AssignedArea getAssignedArea() {
+		return assignedArea;
+	}
+	public void setAssignedArea(AssignedArea assignedArea) {
+		this.assignedArea = assignedArea;
 	}
 	
 	

@@ -21,7 +21,7 @@ public class Cities {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private String city;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="city_id")
@@ -38,7 +38,7 @@ public class Cities {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cities(int id, String city, List<Areas> areas, List<Pincodes> pincodes, States state) {
+	public Cities(Integer id, String city, List<Areas> areas, List<Pincodes> pincodes, States state) {
 		super();
 		this.id = id;
 		this.city = city;
@@ -48,10 +48,10 @@ public class Cities {
 	}
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

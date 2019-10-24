@@ -10,16 +10,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.bolus.backend.development.validation.model.EmployeeValidationBean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Employee_Address")
-public class Address {
+public class Address extends EmployeeValidationBean{
 
 	@Id
 	@GeneratedValue
 	@Column(name="Address_Id")
-	private int addressId;
+	private Integer addressId;
 	private String addressLine1;
 	private String addressLine2;
 	private String city;
@@ -34,7 +35,7 @@ public class Address {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Address(int addressId, String addressLine1, String addressLine2, String city, String state, String pincode,
+	public Address(Integer addressId, String addressLine1, String addressLine2, String city, String state, String pincode,
 			Employee employee) {
 		super();
 		this.addressId = addressId;
@@ -46,10 +47,10 @@ public class Address {
 		this.employee = employee;
 	}
 
-	public int getAddressId() {
+	public Integer getAddressId() {
 		return addressId;
 	}
-	public void setAddressId(int addressId) {
+	public void setAddressId(Integer addressId) {
 		this.addressId = addressId;
 	}
 	public String getAddressLine1() {

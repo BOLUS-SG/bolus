@@ -14,11 +14,11 @@ public class GeoFencingAddress {
 	
 	@Id
 	@GeneratedValue
-	private int id;
-	private int areaId;
-	private int cityId;
-	private int stateId;
-	private int pincodeId;
+	private Integer id;
+	private Integer areaId;
+	private Integer cityId;
+	private Integer stateId;
+	private Integer pincodeId;
 	@OneToOne(mappedBy= "gfAddress", cascade=CascadeType.ALL)
 	private GeoFencingPoints geoFencingPoints;
 	public GeoFencingAddress() {
@@ -26,7 +26,7 @@ public class GeoFencingAddress {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public GeoFencingAddress(int id, int areaId, int cityId, int stateId, int pincodeId,
+	public GeoFencingAddress(Integer id, Integer areaId, Integer cityId, Integer stateId, Integer pincodeId,
 			GeoFencingPoints geoFencingPoints) {
 		super();
 		this.id = id;
@@ -37,36 +37,36 @@ public class GeoFencingAddress {
 		this.geoFencingPoints = geoFencingPoints;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getAreaId() {
+	public Integer getAreaId() {
 		return areaId;
 	}
-	public void setAreaId(int areaId) {
+	public void setAreaId(Integer areaId) {
 		this.areaId = areaId;
 	}
-	public int getCityId() {
+	public Integer getCityId() {
 		return cityId;
 	}
-	public void setCityId(int cityId) {
+	public void setCityId(Integer cityId) {
 		this.cityId = cityId;
 	}
-	public int getStateId() {
+	public Integer getStateId() {
 		return stateId;
 	}
-	public void setStateId(int stateId) {
+	public void setStateId(Integer stateId) {
 		this.stateId = stateId;
 	}
-	public int getPincodeId() {
+	public Integer getPincodeId() {
 		return pincodeId;
 	}
-	public void setPincodeId(int pincodeId) {
+	public void setPincodeId(Integer pincodeId) {
 		this.pincodeId = pincodeId;
 	}
 

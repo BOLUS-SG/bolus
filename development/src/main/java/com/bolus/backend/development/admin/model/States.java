@@ -18,7 +18,7 @@ public class States {
 	
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private String state;
 	
 	@OneToMany(cascade=CascadeType.ALL)
@@ -30,16 +30,16 @@ public class States {
 	}
 	
 
-	public States(int id, String state, List<Cities> cities) {
+	public States(Integer id, String state, List<Cities> cities) {
 		super();
 		this.id = id;
 		this.state = state;
 		this.cities = cities;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getState() {

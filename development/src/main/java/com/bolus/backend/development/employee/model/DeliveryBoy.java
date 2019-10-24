@@ -15,12 +15,13 @@ public class DeliveryBoy extends Employee {
 	public DeliveryBoy() {
 		super();
 	}
+	
 
-	public DeliveryBoy(int id, String firstName, String lastName, Date dob, long phone, String email, long altPhone,
-			String type, String aadharCard, List<Address> address) {
-		super(id, firstName, lastName, dob, phone, email, altPhone, type, aadharCard, address);
-		// TODO Auto-generated constructor stub
+	public DeliveryBoy(Integer id, String firstName, String lastName, Date dob, Long phone, String email, Long altPhone,
+			String type, String aadharCard, List<Address> address, AssignedArea assignedArea) {
+		super(id, firstName, lastName, dob, phone, email, altPhone, type, aadharCard, address, assignedArea);
 	}
+
 
 	public String getDrivingLicense() {
 		return drivingLicense;

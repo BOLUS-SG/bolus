@@ -16,7 +16,7 @@ public class Pincodes {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private String pincode;
 	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL)
@@ -26,17 +26,17 @@ public class Pincodes {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Pincodes(int id, String pincode, Cities cities) {
+	public Pincodes(Integer id, String pincode, Cities cities) {
 		super();
 		this.id = id;
 		this.pincode = pincode;
 		this.cities = cities;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getPincode() {

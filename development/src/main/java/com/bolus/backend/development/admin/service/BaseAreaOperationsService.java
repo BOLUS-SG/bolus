@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bolus.backend.development.admin.dao.repository.IBaseAreaOperationsRepository;
+import com.bolus.backend.development.admin.model.Cities;
 import com.bolus.backend.development.admin.model.States;
 
 @Service
@@ -23,5 +24,4 @@ public class BaseAreaOperationsService implements IBaseAreaOperationsService{
 	public List<States> getBaseAreaDetails() {
 		return baseAreaOperationsRepository.findAll();
 	}
-
 }

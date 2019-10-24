@@ -16,7 +16,7 @@ public class Areas {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private String area;
 	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL)
@@ -26,17 +26,17 @@ public class Areas {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Areas(int id, String area, Cities cities) {
+	public Areas(Integer id, String area, Cities cities) {
 		super();
 		this.id = id;
 		this.area = area;
 		this.cities = cities;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getArea() {

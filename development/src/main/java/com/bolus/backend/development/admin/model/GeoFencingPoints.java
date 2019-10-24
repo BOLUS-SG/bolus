@@ -19,7 +19,7 @@ public class GeoFencingPoints {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private String latitude;
 	private String longitude;
 	private String name;
@@ -36,7 +36,7 @@ public class GeoFencingPoints {
 	
 
 
-	public GeoFencingPoints(int id, String latitude, String longitude, String name, String type,
+	public GeoFencingPoints(Integer id, String latitude, String longitude, String name, String type,
 			GeoFencingAddress gfAddress, ServiceableAreas serviceableAreas) {
 		super();
 		this.id = id;
@@ -48,10 +48,10 @@ public class GeoFencingPoints {
 		this.serviceableAreas = serviceableAreas;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getLatitude() {

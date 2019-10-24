@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bolus.backend.development.admin.model.ServiceableAreas;
+import com.bolus.backend.development.admin.model.Cities;
 import com.bolus.backend.development.admin.model.States;
 import com.bolus.backend.development.admin.service.IBaseAreaOperationsService;
 
 @RestController
-@RequestMapping("/admin/baseArea")
+@RequestMapping("/admin/area/baseArea")
 public class BaseAreaOperationsController {
 
 	@Autowired
