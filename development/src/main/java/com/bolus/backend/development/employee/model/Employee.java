@@ -27,7 +27,6 @@ import com.bolus.backend.development.validation.model.EmployeeValidationBean;
 
 @Entity
 @Table(name = "employee_details")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Employee extends EmployeeValidationBean{
 	
 	@Id
@@ -58,6 +57,7 @@ public class Employee extends EmployeeValidationBean{
 	private List<Address> address = new ArrayList<Address>();
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="assigned_area_id")
+	@NotNull(message = "{employee.assignedArea.invalid}")
 	private AssignedArea assignedArea;
 	public Employee() {
 		super();

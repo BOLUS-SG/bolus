@@ -22,6 +22,11 @@ public class StaffOperationsService implements IStaffOperationsService{
 	public List<Employee> getEmployeeList(String type) {
 		return staffOperationsRepository.findByType(type);
 	}
+
+	@Override
+	public Employee getEmployeeIdByPhone(Long phone) {
+		return staffOperationsRepository.findByPhone(phone);
+	}
 	
 
 }

@@ -10,4 +10,5 @@ import com.bolus.backend.development.employee.model.Employee;
 public interface IStaffOperationsRepository extends JpaRepository<Employee, Integer>{
 	public Employee save(Employee employee);
 	public List<Employee> findByType(String type);
+	public Employee findByPhone(Long phone);
 }

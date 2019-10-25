@@ -9,8 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.bolus.backend.development.validation.model.EmployeeValidationBean;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -21,11 +24,15 @@ public class AssignedArea extends EmployeeValidationBean{
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@JsonIgnore
 	@OneToMany(mappedBy="assignedArea")
 	private List<Employee> employee;
+	@NotNull(message = "{employee.assignedAreaId.invalid}")
 	private Integer areaId;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="assigned_area_id",referencedColumnName = "id")
+	@NotNull(message = "{employee.assignedGeoFencingPoints.invalid}")
+	@Size(min = 1,message = "{employee.assignedGeoFencingPoints.invalid.size}")
 	private List<AssignedGeoFencingPoint> assignedGeoFencingPoints;
 	public AssignedArea() {
 		super();

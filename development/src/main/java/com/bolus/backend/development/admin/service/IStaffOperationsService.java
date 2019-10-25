@@ -8,4 +8,5 @@ public interface IStaffOperationsService {
 	
 	public Employee addEmployeeService(Employee employee);
 	public List<Employee> getEmployeeList(String type);
+	public Employee getEmployeeIdByPhone(Long phone);
 }

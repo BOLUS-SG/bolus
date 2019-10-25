@@ -6,8 +6,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.bolus.backend.development.validation.model.EmployeeValidationBean;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -18,9 +20,11 @@ public class AssignedGeoFencingPoint extends EmployeeValidationBean{
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="assigned_area_id")
 	private AssignedArea assignedArea;
+	@NotNull(message = "{employee.assignedGFPoint.invalid}")
 	private Integer geoPointId;
 	public AssignedGeoFencingPoint() {
 		super();

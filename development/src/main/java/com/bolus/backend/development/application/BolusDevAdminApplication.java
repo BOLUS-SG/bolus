@@ -1,5 +1,7 @@
 package com.bolus.backend.development.application;
 
+import java.util.HashMap;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,8 +27,7 @@ public class BolusDevAdminApplication {
 	}
 
 	@Bean
-	@RequestScope
-	public ResponseDetails responseDetails() {
+	public ResponseDetails getResponseDetails() {
 		return new ResponseDetails();
 	}
 }

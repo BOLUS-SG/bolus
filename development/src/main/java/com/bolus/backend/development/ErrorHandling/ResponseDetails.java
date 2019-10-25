@@ -1,28 +1,28 @@
 package com.bolus.backend.development.ErrorHandling;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ResponseDetails {
 	
-	private Map<String,String> responseMap = new HashMap<String,String>();
+	private List<ResponseDTO> responseList = new ArrayList<ResponseDTO>();
 
 	public ResponseDetails() {
 		super();
 	}
 
-	public ResponseDetails(Map<String, String> responseMap) {
+	public ResponseDetails(List<ResponseDTO> responseList) {
 		super();
-		this.responseMap = responseMap;
+		this.responseList = responseList;
 	}
 
-	public Map<String, String> getResponseMap() {
-		return responseMap;
+	public List<ResponseDTO> getResponseList() {
+		return responseList;
 	}
 
-	public void setResponseMap(Map<String, String> responseMap) {
-		this.responseMap = responseMap;
-	}
+	public void setResponseList(List<ResponseDTO> responseList) {
+		this.responseList = responseList;
+	}	
 
 }

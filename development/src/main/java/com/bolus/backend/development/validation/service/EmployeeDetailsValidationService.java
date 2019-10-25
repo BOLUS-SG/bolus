@@ -19,21 +19,23 @@ import org.springframework.util.ResourceUtils;
 
 import com.bolus.backend.development.ErrorHandling.ResponseDTO;
 import com.bolus.backend.development.ErrorHandling.ResponseDetails;
-import com.bolus.backend.development.employee.model.DBSecondaryDetails;
+import com.bolus.backend.development.employee.model.Employee;
 import com.bolus.backend.development.validation.constants.ValidationConstants;
-import com.bolus.backend.development.validation.dao.repository.IDBDetailsValidationRepository;
+import com.bolus.backend.development.validation.dao.repository.IEmployeeDetailsValidationRepository;
 import com.bolus.backend.development.validation.model.EmployeeValidationBean;
 
-@Service
-public class DBDetailsValidationService implements IDBDetailsValidationService {
 
+
+@Service
+public class EmployeeDetailsValidationService implements IEmployeeDetailsValidationService{
+	
 	@Autowired
 	private ValidatorFactory validatorFactory;
 	@Autowired
-	IDBDetailsValidationRepository dbDetailsValidationRepository;
+	IEmployeeDetailsValidationRepository EmployeeDetailsValidationRepository;
 
 	@Override
-	public ResponseDetails validateDBDetails(EmployeeValidationBean employeeValidationBean,
+	public ResponseDetails validateEmployeeDetails(EmployeeValidationBean employeeValidationBean,
 			ResponseDetails responseDetails) {
 
 		Validator validator = validatorFactory.getValidator();
@@ -59,21 +61,21 @@ public class DBDetailsValidationService implements IDBDetailsValidationService {
 				properties.load(in);
 				code = violation.getMessage();
 				message = properties.getProperty(code);
-				responseDetails.getResponseList().add(new ResponseDTO(code, message));
+				responseDetails.getResponseList().add(new ResponseDTO(code,message));
 			}
 
 		} catch (FileNotFoundException exception) {
 			responseDetails.getResponseList().clear();
 			code = ValidationConstants.UNKNOWN_ERROR_CODE;
 			message = ValidationConstants.UNKNOWN_ERROR_CODE_MESSAGE;
-			responseDetails.getResponseList().add(new ResponseDTO(code, message));
+			responseDetails.getResponseList().add(new ResponseDTO(code,message));
 			System.out.println(exception.getMessage());
 			return responseDetails;
 		} catch (IOException exception) {
 			responseDetails.getResponseList().clear();
 			code = ValidationConstants.UNKNOWN_ERROR_CODE;
 			message = ValidationConstants.UNKNOWN_ERROR_CODE_MESSAGE;
-			responseDetails.getResponseList().add(new ResponseDTO(code, message));
+			responseDetails.getResponseList().add(new ResponseDTO(code,message));
 			System.out.println(exception.getMessage());
 			return responseDetails;
 		}
@@ -82,18 +84,19 @@ public class DBDetailsValidationService implements IDBDetailsValidationService {
 	}
 
 	@Override
-	public ResponseDetails validateUniqueDBDetails(DBSecondaryDetails dbSecondaryDetails,
-			ResponseDetails responseDetails) {
+	public ResponseDetails validateUniqueDBDetails(Employee employee, ResponseDetails responseDetails) {
 		Set<String> responseCodeSet = new HashSet<String>();
 
-		if (dbSecondaryDetails.getDrivingLicense() != null || dbSecondaryDetails.getDrivingLicense() != "") {
-			if (dbDetailsValidationRepository.existsByDrivingLicense(dbSecondaryDetails.getDrivingLicense())) {
-				responseCodeSet.add(ValidationConstants.EMPLOYEE_DRIVING_LICENSE_EXISTS);
+		if (employee.getEmail() != null || employee.getEmail() != "") {
+			if (EmployeeDetailsValidationRepository.existsByEmail(employee.getEmail())) {
+				responseCodeSet.add(ValidationConstants.EMPLOYEE_EMAIL_EXISTS);
 			}
-			if (dbSecondaryDetails.getEmployeeId() != null && dbDetailsValidationRepository.existsById(dbSecondaryDetails.getEmployeeId())) {
-				responseCodeSet.add(ValidationConstants.EMPLOYEE_ID_EXISTS);
+			if (EmployeeDetailsValidationRepository.existsByPhone(employee.getPhone())) {
+				responseCodeSet.add(ValidationConstants.EMPLOYEE_PHONE_EXISTS);
 			}
-
+			if (EmployeeDetailsValidationRepository.existsByAltPhone(employee.getAltPhone())) {
+				responseCodeSet.add(ValidationConstants.EMPLOYEE_ALTPHONE_EXISTS);
+			}
 		}
 
 		if (responseCodeSet.size() > 0) {
@@ -115,7 +118,7 @@ public class DBDetailsValidationService implements IDBDetailsValidationService {
 			for (String codeExp : responseCodeSet) {
 				code = properties.getProperty(codeExp);
 				message = properties.getProperty(code);
-				responseDetails.getResponseList().add(new ResponseDTO(code, message));
+				responseDetails.getResponseList().add(new ResponseDTO(code,message));
 			}
 
 		} catch (FileNotFoundException exception) {
@@ -123,15 +126,18 @@ public class DBDetailsValidationService implements IDBDetailsValidationService {
 			code = ValidationConstants.UNKNOWN_ERROR_CODE;
 			message = ValidationConstants.UNKNOWN_ERROR_CODE_MESSAGE;
 			System.out.println(exception.getMessage());
-			responseDetails.getResponseList().add(new ResponseDTO(code, message));
+			responseDetails.getResponseList().add(new ResponseDTO(code,message));
 		} catch (IOException exception) {
 			responseDetails.getResponseList().clear();
 			code = ValidationConstants.UNKNOWN_ERROR_CODE;
 			message = ValidationConstants.UNKNOWN_ERROR_CODE_MESSAGE;
 			System.out.println(exception.getMessage());
-			responseDetails.getResponseList().add(new ResponseDTO(code, message));
+			responseDetails.getResponseList().add(new ResponseDTO(code,message));
 		}
 
 		return responseDetails;
 	}
+
+	
+	
 }
