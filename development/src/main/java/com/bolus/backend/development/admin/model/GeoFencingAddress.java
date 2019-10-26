@@ -7,17 +7,24 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.bolus.backend.development.validation.model.ServiceableAreaValidationBean;
 
 @Entity
 @Table(name="Geo_Fencing_Address")
-public class GeoFencingAddress {
+public class GeoFencingAddress extends ServiceableAreaValidationBean{
 	
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@NotNull(message = "{serviceableGP.address.area}")
 	private Integer areaId;
+	@NotNull(message = "{serviceableGP.address.city}")
 	private Integer cityId;
+	@NotNull(message = "{serviceableGP.address.state}")
 	private Integer stateId;
+	@NotNull(message = "{serviceableGP.address.pincode}")
 	private Integer pincodeId;
 	@OneToOne(mappedBy= "gfAddress", cascade=CascadeType.ALL)
 	private GeoFencingPoints geoFencingPoints;

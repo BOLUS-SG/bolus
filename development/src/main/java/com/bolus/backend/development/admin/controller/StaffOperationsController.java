@@ -52,9 +52,10 @@ public class StaffOperationsController {
 		}
 		if (responseDetails.getResponseList().isEmpty()) {
 			List<AssignedGeoFencingPoint> geoList = employee.getAssignedArea().getAssignedGeoFencingPoints();
-				for(AssignedGeoFencingPoint geoPoint:geoList)
+				for(AssignedGeoFencingPoint geoPoint:geoList) {
 					responseDetails = employeeDetailsValidationService.validateEmployeeDetails(geoPoint,
 							responseDetails);
+				}
 		}
 		if (responseDetails.getResponseList().isEmpty()) {
 			responseDetails = employeeDetailsValidationService.validateUniqueDBDetails(employee, responseDetails);
@@ -106,5 +107,6 @@ public class StaffOperationsController {
 		List<Employee> employeeList = staffOperationsService.getEmployeeList(type);
 		return employeeList;
 	}
+	
 
 }

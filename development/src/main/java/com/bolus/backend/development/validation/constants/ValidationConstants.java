@@ -11,4 +11,9 @@ public class ValidationConstants {
 	public static final String EMPLOYEE_ALTPHONE_EXISTS = "employee.altPhone.exists";
 	public static final String EMPLOYEE_DRIVING_LICENSE_EXISTS = "employee.drivingLic.exists";
 	public static final String EMPLOYEE_ID_EXISTS = "employee.id.exists";
+	public static final String BASE_AREA_STATE_EXISTS = "base.area.state.exists";
+	public static final String BASE_AREA_CITY_EXISTS = "base.area.city.exists";
+	public static final String BASE_AREA_AREA_EXISTS = "base.area.area.exists";
+	public static final String BASE_AREA_PINCODE_EXISTS = "base.area.pincode.exists";
+	public static final String SERVICEABLE_AREA_NAME_EXISTS = "serviceable.area.name.exists";
 }

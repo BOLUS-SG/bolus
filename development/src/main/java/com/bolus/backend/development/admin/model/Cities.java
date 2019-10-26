@@ -12,22 +12,31 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import com.bolus.backend.development.validation.model.BaseAreaValidationBean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Cities")
-public class Cities {
+public class Cities extends BaseAreaValidationBean{
 
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@NotEmpty(message = "{location.city.invalid}")
 	private String city;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="city_id")
+	@NotNull(message = "{location.areas.invalid}")
+	@Size(min = 1,message = "{location.areas.invalid.size}")
 	private List<Areas> areas = new ArrayList<Areas>();
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="city_id")
+	@NotNull(message = "{location.pincodes.invalid}")
+	@Size(min = 1,message = "{location.pincodes.invalid.size}")
 	private List<Pincodes> pincodes = new ArrayList<Pincodes>();
 	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL)

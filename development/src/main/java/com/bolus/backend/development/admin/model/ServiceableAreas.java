@@ -11,21 +11,33 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.bolus.backend.development.validation.model.ServiceableAreaValidationBean;
 
 @Entity
 @Table(name="Serviceable_Areas")
-public class ServiceableAreas {
+public class ServiceableAreas extends ServiceableAreaValidationBean{
 	
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@NotEmpty(message = "{serviceableArea.name.invalid}")
 	private String name;
+	@NotEmpty(message = "{serviceableArea.maxLatitude.invalid}")
 	private String maxLatitude;
+	@NotEmpty(message = "{serviceableArea.minLatitude.invalid}")
 	private String minLatitude;
+	@NotEmpty(message = "{serviceableArea.maxLongitude.invalid}")
 	private String maxLongitude;
+	@NotEmpty(message = "{serviceableArea.minLatitude.invalid}")
 	private String minLongitude;
 	@OneToMany(cascade= CascadeType.ALL)
 	@JoinColumn(name="area_id")
+	@NotNull(message = "{serviceableArea.gp.invalid}")
+	@Size(min = 1,message = "{serviceableArea.gp.invalid.size}")
 	private List<GeoFencingPoints> geoFencingPoints = new ArrayList<GeoFencingPoints>();
 	public ServiceableAreas() {
 		super();

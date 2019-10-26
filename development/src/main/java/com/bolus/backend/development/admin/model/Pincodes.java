@@ -7,16 +7,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
+import com.bolus.backend.development.validation.model.BaseAreaValidationBean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Pincodes")
-public class Pincodes {
+public class Pincodes extends BaseAreaValidationBean{
 
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@NotEmpty(message = "{location.pincode.invalid}")
 	private String pincode;
 	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL)

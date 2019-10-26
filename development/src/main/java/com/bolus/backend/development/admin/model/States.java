@@ -11,18 +11,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.bolus.backend.development.validation.model.BaseAreaValidationBean;
 
 @Entity
 @Table(name="States")
-public class States {
+public class States extends BaseAreaValidationBean{
 	
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@NotEmpty(message = "{location.state.invalid}")
 	private String state;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="state_id")
+	@NotNull(message = "{location.cities.invalid}")
+	@Size(min = 1,message = "{location.cities.invalid.size}")
 	private List<Cities> cities = new ArrayList<Cities>();
 	public States() {
 		super();
